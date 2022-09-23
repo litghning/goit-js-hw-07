@@ -26,18 +26,18 @@ const addGalleryMerkup = createGalleryMarkup(galleryItems);
 refs.innerHTML = addGalleryMerkup;
 
 refs.addEventListener("click", onImageClick)
-
+const lightbox = new SimpleLightbox('.gallery a', {
+    captionsData: "alt",
+    captionDelay: 250,
+   
+});
 function onImageClick(evt) {
     evt.preventDefault();
     if (evt.target.nodeName !== "IMG")
     { return; }
  
 
-const lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: "alt",
-    captionDelay: 250,
-   
-});
+
 refs.addEventListener('keydown', (evt) => {
     if (evt.code === 'Escape') {
         instance.close();
