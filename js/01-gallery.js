@@ -29,12 +29,21 @@ function onImageClick(evt) {
     { return; }
  
 
-const instance = basicLightbox.create(`<img src ="${evt.target.dataset.source}" width = "800" heigth = "600">`);
+    const instance = basicLightbox.create(`<img src ="${evt.target.dataset.source}" width = "800" heigth = "600">`,
+        {
+            onShow: (instance) => {
+                document.addEventListener('keydown', keyDawnClose)
+            },
+               onClose: (instance) => {
+                document.removeEventListener('keydown', keyDawnClose)
+        }
+    }
+    );
     instance.show();
     
-refs.addEventListener('keydown', (evt) => {
+function keyDawnClose(evt) {
     if (evt.code === 'Escape') {
         instance.close();
     }
-});
+}
 }
